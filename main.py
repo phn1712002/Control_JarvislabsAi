@@ -24,7 +24,6 @@ args = parser.parse_args()
 
 # If --setting_phn is provided, download and extract a zip file from Google Drive
 if args.setting_phn:
-    output = 'config_phn.zip'  # Replace with your file's name
     gdown.download(URL_FILE_MYCONFIG, NAME_FILE_MYCONFIG, quiet=False)
 
     # Ask for the password to extract the zip file
