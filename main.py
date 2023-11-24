@@ -1,14 +1,43 @@
+import argparse
+import gdown
+import zipfile
+import getpass
 import time, psutil, subprocess
 from Tools.Gmail import sendEmail
 from Tools.Json import loadJson
 from jlclient import jarvisclient
 from jlclient.jarvisclient import *
-from  Tools.CMD import clearCMD
+from Tools.CMD import clearCMD
 
 # Environment Variables
 PATH_CONFIG = './config.json'
 NAME_HOST = 'JarvislabsAi'
 STR_SEND_STOP = 'PID STOP RUN!'
+NAME_FILE_MYCONFIG = 'config_phn.zip'
+URL_FILE_MYCONFIG = 'https://drive.google.com/uc?id=1bZiBlhiOhfUFIMbqzzOIwcIMwKJZ2aoV'
+
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--setting_phn', action='store_true')
+args = parser.parse_args()
+
+# If --setting_phn is provided, download and extract a zip file from Google Drive
+if args.setting_phn:
+    output = 'config_phn.zip'  # Replace with your file's name
+    gdown.download(URL_FILE_MYCONFIG, NAME_FILE_MYCONFIG, quiet=False)
+
+    # Ask for the password to extract the zip file
+    password = getpass.getpass("Enter password to extract the zip file: ")
+
+    # Extract the zip file
+    with zipfile.ZipFile(NAME_FILE_MYCONFIG, 'r') as zip_ref:
+        try:
+            zip_ref.extractall(path='.', pwd=bytes(password,'utf-8'))
+        except RuntimeError:
+            print("Incorrect password.")
+        else:
+            print("File extracted successfully.")
 
 # Execute 'ps -ef' command on a Linux terminal
 clearCMD()
