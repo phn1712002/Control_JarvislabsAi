@@ -1,0 +1,4 @@
+# requirements.txt
+
+jlclient @ git+https://github.com/jarvislabsai/jlclient.git@295f40507d2aa6bf12729d193ba19be24520e710
+psutil==5.9.6

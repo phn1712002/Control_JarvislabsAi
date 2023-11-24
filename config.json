@@ -1,0 +1,12 @@
+{
+    "Jarvislabs":{
+        "token": "",
+        "user_id": "phn1712002@gmail.com"
+    },
+    "Gmail":{
+        "sender_email": "phn1712002.k56.mta@gmail.com",
+        "sender_password": "",
+        "receiver_email": "phn1712002@gmail.com",
+        "sleep_duration": 300
+    }
+}
